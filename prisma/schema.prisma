@@ -14,8 +14,17 @@ datasource db {
 }
 
 
-model Sheet {
+model Roof {
   id Int @id @default(autoincrement())
   title String
-  created_at DateTime
+  publishedDate DateTime
+  distributor Distributor @relation(fields: [distributorId], references: [id], onDelete: Cascade)
+  distributorId Int
+}
+
+model Distributor {
+  id Int @id @default(autoincrement())
+  name String
+  location String
+  roofs Roof[]
 }
